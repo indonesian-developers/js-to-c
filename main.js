@@ -8,5 +8,7 @@ module.exports = {
  },
  transpileFile: function transpileFile(file) {
   return module.exports.transpile(require('fs').readFileSync(file))
- }
+ },
+ Node: require('./src/node'),
+ Transpiler: require('./src/program')
 }
