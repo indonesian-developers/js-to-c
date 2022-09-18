@@ -1,7 +1,7 @@
 module.exports = {
- transpile: function transpile() {
+ transpile: function transpile(code) {
   try {
-   return require('./src/program')
+   return require('./src/program')(code)
   } catch(e) {
    throw new (require('./src/errors/TranspileError'))(e.toString())
   }
