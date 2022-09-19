@@ -24,7 +24,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   var token = code[i]
   s = (s + token).trim()
 
-  if (isNum(s.trim()) && !isNum(peek)) {
+  if (!isNaN(s.trim()) && !isNum(peek)) {
    d('NUMBER', s.trim())
    s = ''
    continue
@@ -51,15 +51,15 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    continue
   }
 
-  if (isAlphaNumeric(s.trim()) && !isAlphaNumeric(peek)) {
-   if (isKeyword(s.trim())) {
+  if (s.trim().test(/[0-9]/) && !peek.test(/[0-9]/)) {
+   if (['const'].includes(s.trim())) {
     d('KEYWORD', s);
    } else { d('IDENTIFIER', s) }
     s = ''
     continue
   }
 
-  if (isOp(s.trim()) && !isOp(peek)) {
+  if (['='].includes(s.trim()) && !['='].includes(peek)) {
    d('OP', s.trim())
    s = ''
    continue
