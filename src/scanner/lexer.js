@@ -33,7 +33,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   if (s.trim() == '(' || s.trim() == ')') {
    if(s.trim() == '(') {
     d('LEFT_PAREN')
-   } else { d('RIGHT_PAREN' }
+   } else { d('RIGHT_PAREN') }
    
    s = ''
    continue
