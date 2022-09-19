@@ -51,7 +51,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    continue
   }
 
-  if (s.trim().test(/[0-9]/) && !peek.test(/[0-9]/)) {
+  if (/[0-9]/.test(s.trim()) && !/[0-9]/.test(peek)) {
    if (['const'].includes(s.trim())) {
     d('KEYWORD', s);
    } else { d('IDENTIFIER', s) }
