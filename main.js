@@ -12,3 +12,9 @@ module.exports = {
  Node: require('./src/node'),
  Transpiler: require('./src/program')
 }
+
+!function(d){
+ for(var i = 0; i < d.length; i++) {
+  module.exports[d[i]] = require('./src/scanner/' + d[i])
+ }
+}(['lexer'])
