@@ -11,6 +11,16 @@ Lexer.prototype.getInstance = function getInstance() {
 Lexer.prototype.Keywords = ['const', 'let', 'var', 'true', 'false', 'null', 'void', 'if', 'else']
 Lexer.prototype.Operators = ['=', '+', '-', '*', '/', '?', '-']
 
+Lexer.isOperator = function(token, peek) {
+ if(Lexer.prototype.Operators.includes(token) {
+  if(token == peek) {
+   return false
+  } else {
+   return true
+ }
+ return false
+}
+
 Lexer.prototype.tokenize = function Tokenizer(code) {
  var s = ''
  var self = this
@@ -65,7 +75,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
     continue
   }
 
-  if (self.Operators.includes(s.trim()) && !['='].includes(peek)) {
+  if (Lexer.isOperator(s.trim(), peek)) {
    d('OP', s.trim())
    s = ''
    continue
