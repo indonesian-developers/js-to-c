@@ -17,6 +17,7 @@ Lexer.isOperator = function(token, peek) {
    return false
   } else {
    return true
+  }
  }
  return false
 }
