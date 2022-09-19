@@ -75,3 +75,5 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   return this.tokens
  }
 }
+
+module.exports = Lexer
