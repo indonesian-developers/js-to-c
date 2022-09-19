@@ -12,7 +12,7 @@ Lexer.prototype.Keywords = ['const', 'let', 'var', 'true', 'false', 'null', 'voi
 Lexer.prototype.Operators = ['=', '+', '-', '*', '/', '?', '-']
 
 Lexer.isOperator = function(token, peek) {
- if(Lexer.prototype.Operators.includes(token) {
+ if(Lexer.prototype.Operators.includes(token)) {
   if(token == peek) {
    return false
   } else {
