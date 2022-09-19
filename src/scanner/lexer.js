@@ -10,7 +10,68 @@ Lexer.prototype.getInstance = function getInstance() {
 
 Lexer.prototype.tokenize = function Tokenizer(code) {
  var s = ''
+ var self = this
+ 
+ function d(type, value) {
+  if(typeof value != 'undefined') {
+   self.tokens.push({ type: type, value: value })
+  } else {
+   self.tokens.push({ type: type })
+  }
+ }
+ 
  for(var i = 0; i < code.length; i++) {
   var token = code[i]
   s = (s + token).trim()
+
+  if (isNum(s.trim()) && !isNum(peek)) {
+   d('NUMBER', s.trim())
+   s = ''
+   continue
+  }
+
+  if (s.trim() == '(' || s.trim() == ')') {
+   if(s.trim() == '(') {
+    d('LEFT_PAREN')
+   } else { d('RIGHT_PAREN' }
+   
+   s = ''
+   continue
+  }
+
+  if (s.trim() == '{') {
+   d('LEFT_BRACKET')
+   s = ''
+   continue
+  }
+
+  if (s.trim() == "}") {
+   d('RIGHT_BRACKET')
+   s = ''
+   continue
+  }
+
+  if (isAlphaNumeric(s.trim()) && !isAlphaNumeric(peek)) {
+   if (isKeyword(s.trim())) {
+    d('KEYWORD', s);
+   } else { d('IDENTIFIER', s) }
+    s = ''
+    continue
+  }
+
+  if (isOp(s.trim()) && !isOp(peek)) {
+   d('OP', s.trim())
+   s = ''
+   continue
+  }
+
+  if (s == ";" || s == "\n") {
+   d('EOL') // End of Line
+   s = ''
+   continue
+  }
+
+  d('EOF') // End of File
+  return this.tokens
+ }
 }
