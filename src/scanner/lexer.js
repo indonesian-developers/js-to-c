@@ -74,9 +74,10 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    continue
   }
 
-  d('EOF') // End of File
-  return this.tokens
+  continue
  }
+ d('EOF') // End of File
+ return this.tokens
 }
 
 module.exports = Lexer
