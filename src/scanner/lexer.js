@@ -25,9 +25,9 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
  for(; i < code.length; i++) {
   var token = code[i], peek = code[i+1]
   s = (s + token).trim()
-  console.log({ i, token, peek, tokens: self.tokens, code })
+  // console.log({ i, token, peek, tokens: self.tokens, code })
 
-  if (!isNaN(s.trim()) && !isNum(peek)) {
+  if (!isNaN(s.trim()) && isNaN(peek)) {
    d('NUMBER', s.trim())
    s = ''
    continue
