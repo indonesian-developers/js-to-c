@@ -51,15 +51,15 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   var token = code[i], peek = code[i+1]
   s = (s + token).trim()
   // console.log({ i, token, peek, tokens: self.tokens, code })
-  
-  if ((s.trim().length > 0 && !isNaN(s.trim())) && isNaN(peek)) {
-   d('NUMBER', s.trim())
-   s = ''
-   continue
-  }
 
   if(s.trim == ',') {
    d('COMMA')
+   s = ''
+   continue
+  }
+  
+  if ((s.trim().length > 0 && !isNaN(s.trim())) && isNaN(peek)) {
+   d('NUMBER', s.trim())
    s = ''
    continue
   }
