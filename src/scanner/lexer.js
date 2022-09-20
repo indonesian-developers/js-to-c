@@ -9,7 +9,7 @@ Lexer.prototype.getInstance = function getInstance() {
 }
 
 Lexer.prototype.Keywords = ['const', 'let', 'var', 'true', 'false', 'null', 'void', 'if', 'else']
-Lexer.prototype.Operators = ['=', '==', '===', '+', '+=', '-', '-=', '*', '*=", '/', '<', '<=', '>', '>=', '!=', '!==', '?', ':']
+Lexer.prototype.Operators = ['=', '==', '===', '+', '+=', '-', '-=', '*', '*=', '/', '<', '<=', '>', '>=', '!=', '!==', '?', ':']
 
 Lexer.isOperator = function(token) {
  var op = Lexer.prototype.Operators
