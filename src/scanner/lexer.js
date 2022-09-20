@@ -126,7 +126,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
     token = code[i]
     peek = code[i+1]
 
-    if(/['"].test(token.trim()) {
+    if(/['"]/.test(token.trim()) {
      if(!isComment) {
       i++
       break
