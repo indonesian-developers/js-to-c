@@ -124,8 +124,12 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    var str = ''
    while(true) {
     console.log([!isComment, code[i], code[i+1]], str)
+    if (code[i].trim() == '\\') {
+      console.log('Commenting "', code[i+1], '"')
+      isComment = true
+    }
+    
     if(!isComment) {
-     if (code[i].trim() == '\\') { isComment = true }
      if (/['"]/.test(code[i])) {
       i++
       break
@@ -134,11 +138,11 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
       i++
       continue
      }
-    }
-    if(isComment) {
+    } else if(isComment) {
      str = str + (code[i] || code[i+1])
      i++
      isComment = false
+     continue
     }
     continue
    }
