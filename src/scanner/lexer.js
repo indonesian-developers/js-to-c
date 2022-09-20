@@ -57,6 +57,12 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    continue
   }
 
+  if(s.trim == ',') {
+   d('COMMA')
+   s = ''
+   continue
+  }
+
   if (s.trim() == '(' || s.trim() == ')') {
    if(s.trim() == '(') {
     d('LEFT_PAREN')
@@ -100,6 +106,13 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
 
   if (Lexer.isOperator(s.trim()) && !Lexer.isOperator(peek)) {
    d('OPERATOR', s.trim())
+   s = ''
+   continue
+  }
+
+  if (s.trim == '\') {
+   d('TOKEN', peek)
+   i++
    s = ''
    continue
   }
