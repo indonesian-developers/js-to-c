@@ -143,8 +143,10 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
      }
      
      str = str + token
+     i++
     }
-    console.log([!isComment, code[i], code[i+1]], str)
+    console.log([!isComment, code[i], code[i+1]], { str })
+    continue
    }
   }
 
