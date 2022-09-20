@@ -52,7 +52,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   s = (s + token).trim()
   // console.log({ i, token, peek, tokens: self.tokens, code })
 
-  if(s.trim == ',') {
+  if(s.trim() == ',') {
    d('COMMA')
    s = ''
    continue
