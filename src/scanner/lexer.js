@@ -122,10 +122,23 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   if(/['"]/.test(s.trim()) && !isComment) {
    i++
    var str = ''
-   while(!isComment && /['"]/.test(code[i])) {
-    if (code[i].trim() == '\\') { isComment = true }
-    str = str + code[i]
-    i++
+   while(true) {
+    if(!isComment) {
+     if (code[i].trim() == '\\') { isComment = true }
+     if (/['"]/.test(code[i])) {
+      i++
+      break
+     } else {
+      str = str + code[i]
+      i++
+     }
+    }
+    if(isComment) {
+     str = str + code[i]
+     i++
+     isComment = false
+    }
+    continue
    }
    d('STRING', str)
    i++
