@@ -131,10 +131,11 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
      } else {
       str = str + code[i]
       i++
+      continue
      }
     }
     if(isComment) {
-     str = str + code[i]
+     str = str + (code[i] || code[i+1])
      i++
      isComment = false
     }
