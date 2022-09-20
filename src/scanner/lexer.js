@@ -120,7 +120,6 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   }
 
   if(/['"]/.test(s.trim()) && !isComment) {
-   i++
    var str = ''
    while(true) {
     token = code[i]
@@ -128,6 +127,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
 
     if(/['"]/.test(token.trim())) {
      if(!isComment) {
+      console.log('BREAK')
       i++
       break
      } else {
@@ -137,12 +137,14 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
     } else {
      if(token.trim() == '\\') {
       isComment = true
+      console.log('COMMENTING')
       token = code[i+1]
       i++
       peek = code[i+1]
      }
      
      str = str + token
+     console.log('ADD', token)
      i++
     }
     console.log([!isComment, code[i], code[i+1]], { str })
