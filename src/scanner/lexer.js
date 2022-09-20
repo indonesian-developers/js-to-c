@@ -12,8 +12,13 @@ Lexer.prototype.Keywords = ['const', 'let', 'var', 'true', 'false', 'null', 'voi
 Lexer.prototype.Operators = ['=', '+', '-', '*', '/', '?', '-']
 
 Lexer.isOperator = function(token, peek) {
- var op = Lexer.prototype.Operators.includes
- return op(token) && !op(peek)
+ var op = Lexer.prototype.Operators
+ return op.includes(token) && !op.includes(peek)
+}
+
+Lecer.isAlphanumeric = function(token, peek) {
+ var r = /[a-zA-Z0-9]/
+ return r.test(token) && !r.test(peek)
 }
 
 Lexer.prototype.tokenize = function Tokenizer(code) {
@@ -62,7 +67,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    continue
   }
 
-  if (/[a-zA-Z0-9]/.test(s.trim()) && !/[a-zA-Z]/.test(peek)) {
+  if (Lexer.isAlphanumeric(s.trim(), peek)) {
    if (self.Keywords.includes(s.trim())) {
     d('KEYWORD', s);
    } else { d('IDENTIFIER', s) }
