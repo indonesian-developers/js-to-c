@@ -14,7 +14,7 @@ Lexer.prototype.Operators = ['=', '==', '===', '+', '+=', '-', '-=', '*', '*=', 
 Lexer.isOperator = function(token) {
  var op = Lexer.prototype.Operators
  for (var i = 0; i < op.length; i++) {
-  if (op[i] == v) { return true }
+  if (op[i] == token) { return true }
  }
  return false
 }
@@ -27,7 +27,7 @@ Lexer.isIdentifier = function(token, peek) {
 Lexer.isKeyword = function(token) {
  var kwd = Lexer.prototype.Keywords
  for (var i = 0; i < kwd.length; i++) {
-  if (kwd[i] == v) { return true }
+  if (kwd[i] == token) { return true }
  }
  return false
 }
