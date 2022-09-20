@@ -78,6 +78,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   if (Lexer.isOperator(s.trim())) {
    if(Lexer.isOperator(peek)) {
     d('COMPARATOR', s.trim() + peek)
+    i++
    } else {
     d('OPERATOR', s.trim())
    }
