@@ -8,7 +8,7 @@ Lexer.prototype.getInstance = function getInstance() {
  return this.instance
 }
 
-Lexer.prototype.Keywords = ['const', 'let', 'var', 'true', 'false', 'null', 'void', 'if', 'else']
+Lexer.prototype.Keywords = ['const', 'let', 'var', 'true', 'false', 'null', 'void', 'if', 'else', 'return', 'function', 'delete', 'get', 'set']
 Lexer.prototype.Operators = ['=', '==', '===', '+', '+=', '-', '-=', '*', '*=', '/', '<', '<=', '>', '>=', '!=', '!==', '?', ':']
 
 Lexer.isOperator = function(token) {
@@ -151,6 +151,9 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
     console.log([!isComment, code[i], code[i+1]], { str })
     continue
    }
+   d('STRING', str)
+   s = ''
+   continue
   }
 
   if (s == ';' || s == '\n') {
