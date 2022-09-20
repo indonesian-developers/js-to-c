@@ -67,12 +67,24 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   }
 
   if (s.trim() == '{') {
-   d('LEFT_BRACKET')
+   d('LEFT_CURLY')
    s = ''
    continue
   }
 
   if (s.trim() == "}") {
+   d('RIGHT_CURLY')
+   s = ''
+   continue
+  }
+
+  if (s.trim() == '[') {
+   d('LEFT_BRACKET')
+   s = ''
+   continue
+  }
+
+  if (s.trim() == "]") {
    d('RIGHT_BRACKET')
    s = ''
    continue
@@ -92,7 +104,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    continue
   }
 
-  if (s == ";" || s == "\n") {
+  if (s == ';' || s == '\n') {
    d('EOL') // End of Line
    s = ''
    continue
