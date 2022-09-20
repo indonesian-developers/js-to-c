@@ -45,12 +45,13 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
  }
  
  var i = 0
+ var isComment = false
  
  for(; i < code.length; i++) {
   var token = code[i], peek = code[i+1]
   s = (s + token).trim()
   // console.log({ i, token, peek, tokens: self.tokens, code })
-
+  
   if ((s.trim().length > 0 && !isNaN(s.trim())) && isNaN(peek)) {
    d('NUMBER', s.trim())
    s = ''
@@ -110,8 +111,23 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    continue
   }
 
-  if (s.trim == '\') {
+  if (s.trim() == '\\') {
    d('TOKEN', peek)
+   isComment = true
+   i++
+   s = ''
+   continue
+  }
+
+  if(/['"]/.test(s.trim()) && !isComment) {
+   i++
+   var str = ''
+   while(!isComment && /['"]/.test(code[i])) {
+    if (code[i].trim() == '\\') { isComment = true }
+    str = str + code[i]
+    i++
+   }
+   d('STRING', str)
    i++
    s = ''
    continue
