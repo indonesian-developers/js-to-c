@@ -9,16 +9,27 @@ Lexer.prototype.getInstance = function getInstance() {
 }
 
 Lexer.prototype.Keywords = ['const', 'let', 'var', 'true', 'false', 'null', 'void', 'if', 'else']
-Lexer.prototype.Operators = ['=', '+', '-', '*', '/', '?', '-']
+Lexer.prototype.Operators = ['=', '==', '===', '+', '+=', '-', '-=', '*', '*=", '/', '<', '<=', '>', '>=', '!=', '!==', '?', ':']
 
 Lexer.isOperator = function(token) {
  var op = Lexer.prototype.Operators
- return op.includes(token)
+ for (var i = 0; i < op.length; i++) {
+  if (kwd[i] == v) { return true }
+ }
+ return false
 }
 
 Lexer.isIdentifier = function(token, peek) {
  var r = /[a-zA-Z0-9._$]/
  return r.test(token) && !r.test(peek)
+}
+
+Lexer.isKeyword = function(token) {
+ var kwd = Lexer.prototype.Keywords
+ for (var i = 0; i < kwd.length; i++) {
+  if (kwd[i] == v) { return true }
+ }
+ return false
 }
 
 Lexer.prototype.tokenize = function Tokenizer(code) {
@@ -68,20 +79,15 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   }
 
   if (Lexer.isIdentifier(s.trim(), peek)) {
-   if (self.Keywords.includes(s.trim())) {
+   if (Lexer.isKeyword(s.trim())) {
     d('KEYWORD', s);
    } else { d('IDENTIFIER', s) }
     s = ''
     continue
   }
 
-  if (Lexer.isOperator(s.trim())) {
-   if(Lexer.isOperator(peek)) {
-    d('COMPARATOR', s.trim() + peek)
-    i++
-   } else {
-    d('OPERATOR', s.trim())
-   }
+  if (Lexer.isOperator(s.trim()) && !Lexer.isOperator(peek)) {
+   d('OPERATOR', s.trim())
    s = ''
    continue
   }
