@@ -12,14 +12,8 @@ Lexer.prototype.Keywords = ['const', 'let', 'var', 'true', 'false', 'null', 'voi
 Lexer.prototype.Operators = ['=', '+', '-', '*', '/', '?', '-']
 
 Lexer.isOperator = function(token, peek) {
- if(Lexer.prototype.Operators.includes(token)) {
-  if(token == peek) {
-   return false
-  } else {
-   return true
-  }
- }
- return false
+ var op = Lexer.prototype.Operators.includes
+ return op(token) && !op(peek)
 }
 
 Lexer.prototype.tokenize = function Tokenizer(code) {
@@ -68,7 +62,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    continue
   }
 
-  if (/[a-zA-Z]/.test(s.trim()) && !/[a-zA-Z]/.test(peek)) {
+  if (/[a-zA-Z0-9]/.test(s.trim()) && !/[a-zA-Z]/.test(peek)) {
    if (self.Keywords.includes(s.trim())) {
     d('KEYWORD', s);
    } else { d('IDENTIFIER', s) }
