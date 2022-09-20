@@ -16,7 +16,7 @@ Lexer.isOperator = function(token, peek) {
  return op.includes(token) && !op.includes(peek)
 }
 
-Lecer.isAlphanumeric = function(token, peek) {
+Lexer.isAlphanumeric = function(token, peek) {
  var r = /[a-zA-Z0-9]/
  return r.test(token) && !r.test(peek)
 }
