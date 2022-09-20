@@ -57,6 +57,43 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    s = ''
    continue
   }
+
+  if(/['"]/.test(s.trim()) && !isComment) {
+   var str = ''
+   while(true) {
+    token = code[i]
+    peek = code[i+1]
+
+    if(token.trim() == '\\') {
+     isComment = true
+     str = str + token
+     console.log('COMMENTING', token)
+     i++
+     i++
+     continue
+    }
+
+    if(/['"]/.test(token.trim())) {
+     if(!isComment) {
+      console.log('BREAK')
+      i++
+      break
+     } else {
+      str = str + token.trim()
+      i++
+     }
+    } else {
+     str = str + token
+     console.log('ADD', token)
+     i++
+    }
+    console.log([!isComment, code[i], code[i+1]], { str })
+    continue
+   }
+   d('STRING', str)
+   s = ''
+   continue
+  }
   
   if ((s.trim().length > 0 && !isNaN(s.trim())) && isNaN(peek)) {
    d('NUMBER', s.trim())
@@ -115,43 +152,6 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    d('TOKEN', peek)
    isComment = true
    i++
-   s = ''
-   continue
-  }
-
-  if(/['"]/.test(s.trim()) && !isComment) {
-   var str = ''
-   while(true) {
-    token = code[i]
-    peek = code[i+1]
-
-    if(token.trim() == '\\') {
-     isComment = true
-     str = str + token
-     console.log('COMMENTING', token)
-     i++
-     i++
-     continue
-    }
-
-    if(/['"]/.test(token.trim())) {
-     if(!isComment) {
-      console.log('BREAK')
-      i++
-      break
-     } else {
-      str = str + token.trim()
-      i++
-     }
-    } else {
-     str = str + token
-     console.log('ADD', token)
-     i++
-    }
-    console.log([!isComment, code[i], code[i+1]], { str })
-    continue
-   }
-   d('STRING', str)
    s = ''
    continue
   }
