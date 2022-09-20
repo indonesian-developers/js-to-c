@@ -123,33 +123,29 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    i++
    var str = ''
    while(true) {
-    console.log([!isComment, code[i], code[i+1]], str)
-    if (code[i].trim() == '\\') {
-      console.log('Commenting "', code[i+1], '"')
-      isComment = true
-    }
-    
-    if(!isComment) {
-     if (/['"]/.test(code[i])) {
+    token = code[i]
+    peek = code[i+1]
+
+    if(/['"].test(token.trim()) {
+     if(!isComment) {
       i++
       break
      } else {
-      str = str + code[i]
+      str = str + token.trim()
       i++
-      continue
      }
-    } else if(isComment) {
-     str = str + (code[i] || code[i+1])
-     i++
-     isComment = false
-     continue
+    } else {
+     if(token.trim() == '\\') {
+      isComment = true
+      token = code[i+1]
+      i++
+      peek = code[i+1]
+     }
+     
+     str = str + token
     }
-    continue
+    console.log([!isComment, code[i], code[i+1]], str)
    }
-   d('STRING', str)
-   i++
-   s = ''
-   continue
   }
 
   if (s == ';' || s == '\n') {
