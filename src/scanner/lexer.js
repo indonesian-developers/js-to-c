@@ -66,7 +66,10 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
     peek = code[i+1]
     var old = code[i-1]
 
-console.log({old, token, peek})
+    if(token.trim() == '\\') {
+     i++
+     continue
+    }
 
     if(/['"]/.test(token.trim())) {
      if(old != '\\') {
