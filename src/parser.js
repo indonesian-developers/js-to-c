@@ -55,7 +55,7 @@ Parser.prototype.parse = function parse() {
 }
 
 Parser.prototype.statements = function () {
- var   = this.current();
+ var c = this.current();
  if (c.type == 'KEYWORDS') {
   if(c.value == 'class') {
    // UNIMPLEMENTED
