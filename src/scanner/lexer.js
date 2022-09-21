@@ -9,7 +9,7 @@ Lexer.prototype.getInstance = function getInstance() {
 }
 
 Lexer.prototype.Keywords = ['const', 'let', 'var', 'true', 'false', 'null', 'void', 'if', 'else', 'return', 'function', 'delete', 'get', 'set']
-Lexer.prototype.Operators = ['=', '==', '===', '+', '+=', '-', '-=', '*', '*=', '/', '<', '<=', '>', '>=', '!=', '!==', '?', ':']
+Lexer.prototype.Operators = ['=', '==', '===', '+', '++', '+=', '-', '--', '-=', '*', '*=', '/', '<', '<=', '>', '>=', '!=', '!==', '?', ':']
 
 Lexer.isOperator = function(token) {
  var op = Lexer.prototype.Operators
@@ -154,7 +154,13 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
    continue
   }
 
-  if (s == ';' || s == '\n') {
+  if (s == ';') {
+   d('SEMI') // End of Line
+   s = ''
+   continue
+  }
+
+  if (s == '\n') {
    d('EOL') // End of Line
    s = ''
    continue
