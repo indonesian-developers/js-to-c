@@ -80,3 +80,5 @@ Parser.prototype.statements = function () {
   return c
  }
 }
+
+module.exports = Parser
