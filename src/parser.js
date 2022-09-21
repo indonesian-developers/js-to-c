@@ -13,11 +13,11 @@ Parser.getInstance = function getInstance(parser) {
  return parser.instance
 }
 
-Parser.prototype.addBracket(bracket) {
+Parser.prototype.addBracket = function addBracket(bracket) {
  this.brackets.push(bracket)
 }
 
-Parser.prototype.getBrackets() {
+Parser.prototype.getBrackets = function getBrackets() {
  var b = [], j = 0, k = 0
  // Checking missing brackets
  for(var i=0; i<this.brackets.length;i++) {
