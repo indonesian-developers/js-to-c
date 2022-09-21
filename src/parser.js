@@ -35,26 +35,26 @@ Parser.prototype.getBrackets = function getBrackets() {
  return b
 }
 
-Parser.prototype.advance() {
+Parser.prototype.advance = function advance() {
  this.i++;
 }
 
-Parser.prototype.peep() {
+Parser.prototype.peek = function peek() {
  return this.tokens(this.i + 1);
 }
 
-Parser.prototype.current() {
+Parser.prototype.current = function getCurrent() {
  return this.tokens[this.i];
 }
 
-Parser.prototype.parse() {
+Parser.prototype.parse = function parse() {
  while (this.current().type == 'EOF') {
   this.expr.push(this.statements());
  }
  return this.expr;
 }
 
-Parser.prototype.statements() {
+Parser.prototype.statements = function () {
  var   = this.current();
  if (c.type == 'KEYWORDS') {
   if(c.value == 'class') {
@@ -77,5 +77,5 @@ Parser.prototype.statements() {
    // return this.declareFunction()
   }
  } else if(c.type == 'NUMBER') {
-  return 
+  return c
 }
