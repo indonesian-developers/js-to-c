@@ -61,6 +61,7 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
   if(/['"]/.test(s.trim()) && !isComment) {
    var str = ''
    while(true) {
+    i++
     token = code[i]
     peek = code[i+1]
     var old = code[i-1]
@@ -70,16 +71,13 @@ console.log({old, token, peek})
     if(/['"]/.test(token.trim())) {
      if(old != '\\') {
       console.log('BREAK')
-      i++
       break
      } else {
       str = str + token.trim()
-      i++
-     }i
+     }
     } else {
      str = str + token
      console.log('ADD', token)
-     i++
     }
     console.log([!isComment, code[i], code[i+1]], { str })
     continue
