@@ -78,4 +78,5 @@ Parser.prototype.statements = function () {
   }
  } else if(c.type == 'NUMBER') {
   return c
+ }
 }
