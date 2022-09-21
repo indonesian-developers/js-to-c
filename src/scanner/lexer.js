@@ -64,6 +64,8 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
     token = code[i]
     peek = code[i+1]
 
+console.log({token, peek})
+
     if(token.trim() == '\\') {
      isComment = true
      str = str + token
