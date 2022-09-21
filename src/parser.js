@@ -22,7 +22,7 @@ Parser.prototype.getBrackets = function getBrackets() {
  // Checking missing brackets
  for(var i=0; i<this.brackets.length;i++) {
   var br = this.brackets[i]
-  if(/LEFT_/.test(br.type)) {
+  if(br.type.indexOf('LEFT') > -1) {
    b.push({ id: j, value: br })
    j++
   } else {
