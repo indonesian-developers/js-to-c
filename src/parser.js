@@ -4,7 +4,7 @@ function Parser(lexer) {
  this.i = 0
  this.instance = this
  this.brackets = lexer.filter(function(v) {
-  return /((BRACKET)|(CURLY)|(PAREN))$/.test(v)
+  return /((BRACKET)|(CURLY)|(PAREN))$/.test(v.type)
  })
 }
 
