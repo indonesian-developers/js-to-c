@@ -76,16 +76,13 @@ Lexer.prototype.tokenize = function Tokenizer(code) {
 
     if(/['"]/.test(token.trim())) {
      if(old != '\\') {
-      console.log('BREAK')
       break
      } else {
       str = str + token.trim()
      }
     } else {
      str = str + token
-     console.log('ADD', token)
     }
-    console.log([!isComment, code[i], code[i+1]], { str })
     continue
    }
    d('STRING', str)
