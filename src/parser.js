@@ -8,7 +8,7 @@ function Parser(lexer) {
  })
 }
 
-Parser.getInstance = function getInstance(r) {
+Parser.getInstance = function getInstance(d) {
  if(d instanceof (require('./scanner/lexer.js'))) {
   d.instance = new Parser(d)
  } else if(!(d.instance instanceof Parser)) {
