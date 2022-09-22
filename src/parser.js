@@ -18,7 +18,7 @@ Parser.prototype.addBracket = function addBracket(bracket) {
 }
 
 Parser.prototype.getBrackets = function getBrackets(brackets) {
- var brackets= this.brackets b = [], i=0, typef = {
+ var brackets = this.brackets, b = [], i=0, typef = {
    BRACKET: '[]',
    PAREN: '()',
    CURLY: '{}'
