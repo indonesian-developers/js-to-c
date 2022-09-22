@@ -5,6 +5,7 @@ function Parser(lexer) {
  this.instance = this
  this.brackets = lexer.filter(function(v) {
   return /((BRACKET)|(CURLY)|(PAREN))$/.test(v)
+ }
 }
 
 Parser.getInstance = function getInstance(parser) {
