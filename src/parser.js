@@ -17,21 +17,40 @@ Parser.prototype.addBracket = function addBracket(bracket) {
  this.brackets.push(bracket)
 }
 
-Parser.prototype.getBrackets = function getBrackets() {
- var b = [], j = 0, k = 0
- // Checking missing brackets
- for(var i=0; i<this.brackets.length;i++) {
-  var br = this.brackets[i]
-  if(br.type.indexOf('LEFT') > -1) {
-   b.push({ id: j, value: br })
-   j++
-  } else {
-   b.push({ id: j - k, value: br })
-   k++
-  }
-  i++
-  continue
+Parser.prototype.getBrackets = function getBrackets(brackets) {
+ var brackets= this.brackets b = [], i=0, typef = {
+   BRACKET: '[]',
+   PAREN: '()',
+   CURLY: '{}'
  }
+ // Checking missing brackets
+ for(; i<brackets.length;i++) {
+  var br = brackets[i]
+  var type = br.type.replace(/^((RIGHT)|(LEFT))_/, '')
+  var direction = [(br.type.match(/LEFT/g) || ['RIGHT'])[0], 0]
+  if(direction[0] == 'RIGHT') { direction[1] = 1 }
+  var nbr = { direction: direction[0], type: type, value: typef[type][direction[1]] }
+  b.push(nbr)
+ }
+
+ var h = []
+ for(var i2 = 0; i2 < b.length; i2++) {
+  var tok = b[i2]
+   if(tok.direction == 'LEFT') {
+    h.push(tok)
+   } else {
+    if(tok.type == h[h.length - 1].type) {
+     h.pop()
+    } else {
+     throw new Error('Unexpected token: ' + tok.value)
+    }
+  }
+}
+  
+ if(h.length > 0) { 
+   throw new Error('Unexpected token')
+ }
+  
  return b
 }
 
