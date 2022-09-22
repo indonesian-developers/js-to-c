@@ -8,11 +8,13 @@ function Parser(lexer) {
  })
 }
 
-Parser.getInstance = function getInstance(parser) {
- if(!(parser.instance instanceof Parser)) {
-  parser.instance = new Parser(parser.tokens)
+Parser.getInstance = function getInstance(r) {
+ if(d instanceof (require('./scanner/lexer.js'))) {
+  d.instance = new Parser(d)
+ } else if(!(d.instance instanceof Parser)) {
+  d.instance = new Parser(d.tokens)
  }
- return parser.instance
+ return d.instance
 }
 
 Parser.prototype.addBracket = function addBracket(bracket) {
