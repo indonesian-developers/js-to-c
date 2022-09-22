@@ -3,7 +3,8 @@ function Parser(lexer) {
  this.expr = []
  this.i = 0
  this.instance = this
- this.brackets = []
+ this.brackets = lexer.filter(function(v) {
+  return /((BRACKET)|(CURLY)|(PAREN))$/.test(v)
 }
 
 Parser.getInstance = function getInstance(parser) {
