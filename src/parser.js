@@ -109,6 +109,8 @@ Parser.prototype.statements = function () {
    return this.declareVariable()
   } else if(c.value == 'function') {
    return this.declareFunction()
+  } else if(c.value == 'return') {
+   return Parser.wrapToken({ type: 'return', value: this.advance() })
   }
  } else {
   this.advance()
