@@ -117,9 +117,9 @@ Parser.prototype.statements = function () {
   if(c.value == '{') {
    return Parser.wrapToken({ type: 'object', value: this.blockStatement('curly') })
   } else if(c.value == '[') {
-   return Parser.wrapToken({ type: 'array' value: this.blockStatement('bracket') })
+   return Parser.wrapToken({ type: 'array', value: this.blockStatement('bracket') })
   } else if(c.value == '(') {
-   return Parser.wrapToken({ type: 'object_array' value: this.blockStatement('paren') })
+   return Parser.wrapToken({ type: 'object_array', value: this.blockStatement('paren') })
   }
   else {
    return Parser.wrapToken(c)
