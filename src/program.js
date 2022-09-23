@@ -9,7 +9,7 @@ int main() {
   $×[{${rand}_INNER]
 }`
 
-temp = temp.replace((rand + '_INNER'), JSON.stringify(new Lexer.lexer().tokenize(code))
+temp = temp.replace((rand + '_INNER'), JSON.stringify(new Lexer.lexer().tokenize(code)))
 
   return temp
 }
