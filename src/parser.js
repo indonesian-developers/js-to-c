@@ -114,7 +114,16 @@ Parser.prototype.statements = function () {
   }
  } else {
   this.advance()
-  return Parser.wrapToken(c)
+  if(c.value == '{') {
+   return Parser.wrapToken({ type: 'object', value: this.blockStatement('curly') })
+  } else if(c.value == '[') {
+   return Parser.wrapToken({ type: 'array' value: this.blockStatement('bracket') })
+  } else if(c.value == '(') {
+   return Parser.wrapToken({ type: 'object_array' value: this.blockStatement('paren') })
+  }
+  else {
+   return Parser.wrapToken(c)
+  }
  }
  throw new Error('Unsupported feature: ' + c.value + ' [' + c.type + ']')
 }
