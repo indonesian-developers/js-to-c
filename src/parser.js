@@ -100,6 +100,7 @@ Parser.prototype.statements = function () {
    // return this.declareFunction()
   }
  } else {
+  this.advance()
   return c
  }
  return null
