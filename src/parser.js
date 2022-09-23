@@ -150,7 +150,7 @@ Parser.prototype.declareFunction = function () {
  var t = this.advance()
  var attrs = this.blockStatement('PAREN')
  var inside = this.blockStatement('CURLY')
- console.log(t, attrs, inside)
+ console.log(JSON.stringify({t, attrs, inside}, null, '  '))
  return Parser.wrapToken({ type: 'fn', value: [t, attrs, inside] })
 }
 
