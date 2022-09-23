@@ -73,7 +73,7 @@ Parser.prototype.advance = function advance() {
 }
 
 Parser.prototype.peek = function peek() {
- return this.tokens[this.i + 1]
+ return this.tokens[this.i + 1] || {type:'EOF'}
 }
 
 Parser.prototype.current = function getCurrent() {
