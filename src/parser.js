@@ -102,7 +102,7 @@ Parser.prototype.statements = function () {
   this.advance()
   return c
  }
- return null
+ throw new Error('Unsupported feature: ' + c.value + ' [' + c.type + ']')
 }
 
 Parser.prototype.blockStatement = function (type) {
