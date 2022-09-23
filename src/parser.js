@@ -95,9 +95,12 @@ Parser.prototype.statements = function () {
   if(c.value == 'class') {
    // UNIMPLEMENTED
    // return this.declareClass()
-  } else if(c.value == 'function') {
+  } else if(c.value == 'for') {
    // UNIMPLEMENTED
-   // return this.declareFunction()
+   // return this.declareForLoop()
+  } else if(c.value == 'while') {
+   // UNIMPLEMENTED
+   // return this.declareWhileLoop()
   } else if(c.value == 'var') {
    return this.declareVariable()
   } else if(c.value == 'const') {
