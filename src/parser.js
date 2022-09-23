@@ -104,8 +104,7 @@ Parser.prototype.statements = function () {
   } else if(c.value == 'let') {
    return this.declareVariable()
   } else if(c.value == 'function') {
-   // UNIMPLEMENTED
-   // return this.declareFunction()
+   return this.declareFunction()
   }
  } else {
   this.advance()
