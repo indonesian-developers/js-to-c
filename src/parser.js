@@ -143,7 +143,9 @@ Parser.prototype.declareVariable = function () {
 
 Parser.prototype.declareFunction = function () {
  var s = this, t = this.advance()
- return Parser.wrapToken({ type: 'fn', value: [t, s.blockStatement()] })
+ var attrs = this.blockStatement('PAREN')
+ var inside = this.blockStatement('CURLY')
+ return Parser.wrapToken({ type: 'fn', value: [t, attrs, inside] })
 }
 
 module.exports = Parser
