@@ -8,6 +8,15 @@ function Parser(lexer) {
  })
 }
 
+Parser.wrapToken = function wrapToken(token, pos) {
+ function WrappedToken(t, pos) {
+  this.token = t
+  this.position = pos || 'in'
+ }
+
+ return new WrappedToken(token, pos)
+}
+
 Parser.getInstance = function getInstance(d) {
  if(d instanceof (require('./scanner/lexer.js'))) {
   d.instance = new Parser(d)
@@ -100,7 +109,7 @@ Parser.prototype.statements = function () {
   }
  } else {
   this.advance()
-  return c
+  return Parser.wrapToken(c)
  }
  throw new Error('Unsupported feature: ' + c.value + ' [' + c.type + ']')
 }
@@ -130,7 +139,12 @@ Parser.prototype.declareVariable = function () {
  r = r + ' ' + val.value
  // console.log({ r, val, v: this.current() })
  this.advance()
- return { type: 'variableDeclare', value: r }
+ return Parser.wrapToken({ type: 'variableDeclare', value: r })
+}
+
+Parser.prototype.declareFunction = function () {
+ var t = this.advance()
+ return Parser.wrapToken({ type: 'fn', value: [t, this.blockStatement()] })
 }
 
 module.exports = Parser
