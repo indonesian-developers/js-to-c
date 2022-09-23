@@ -71,7 +71,7 @@ Parser.prototype.current = function getCurrent() {
 }
 
 Parser.prototype.parse = function parse() {
- while (this.current().type == 'EOF') {
+ while (this.current().type != 'EOF') {
   this.expr.push(this.statements())
  }
  return this.expr
