@@ -1,4 +1,5 @@
-
+var Lexer = require('./scanner/lexer')
+var Parser = require('./parser')
 
 module.exports = function(code) {
   let rand = Math.floor(Math.random() * (900 * 900))
@@ -7,6 +8,8 @@ module.exports = function(code) {
 int main() {
   $×[{${rand}_INNER]
 }`
+
+temp = temp.replace((rand + '_INNER'), JSON.stringify(new Lexer.lexer().tokenize(code))
 
   return temp
 }
