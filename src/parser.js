@@ -125,9 +125,9 @@ Parser.prototype.declareVariable = function () {
  var r = t;
  r = r + ' ' + this.advance().value
  this.advance()
- var val = this.advance().value
- if (val.type == 'STRING') { val = '"' + val + '"' }
- r + r + ' ' + val
+ var val = this.advance()
+ if (val.type == 'STRING') { val.value = '"' + val.value + '"' }
+ r + r + ' ' + val.value
  this.advance()
  return { type: 'variableDeclare', value: r }
 }
