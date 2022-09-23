@@ -114,13 +114,13 @@ Parser.prototype.statements = function () {
  } else {
   this.advance()
   if(c.value == '{') {
-   console.log(c}
+   console.log(c)
    return Parser.wrapToken({ type: 'object', value: this.blockStatement('curly') })
   } else if(c.value == '[') {
-   console.log(c}
+   console.log(c)
    return Parser.wrapToken({ type: 'array', value: this.blockStatement('bracket') })
   } else if(c.value == '(') {
-   console.log(c}
+   console.log(c)
    return Parser.wrapToken({ type: 'object_array', value: this.blockStatement('paren') })
   }
   else {
