@@ -137,14 +137,14 @@ Parser.prototype.declareVariable = function () {
  if (val.type == 'STRING') { val.value = '"' + val.value + '"' }
  r = r + ' ' + val.value
  // console.log({ r, val, v: this.current() })
- this.advance()
- return Parser.wrapToken({ type: 'variableDeclare', value: r })
+ return this.advance(), Parser.wrapToken({ type: 'variableDeclare', value: r })
 }
 
 Parser.prototype.declareFunction = function () {
  var s = this, t = this.advance()
  var attrs = this.blockStatement('PAREN')
  var inside = this.blockStatement('CURLY')
+ console.log({ s, attrs, inside })
  return Parser.wrapToken({ type: 'fn', value: [t, attrs, inside] })
 }
 
