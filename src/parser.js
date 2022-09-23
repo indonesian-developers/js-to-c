@@ -59,22 +59,22 @@ Parser.prototype.getBrackets = function getBrackets(brackets) {
 }
 
 Parser.prototype.advance = function advance() {
- this.i++;
+ this.i++
 }
 
 Parser.prototype.peek = function peek() {
- return this.tokens(this.i + 1);
+ return this.tokens[this.i + 1]
 }
 
 Parser.prototype.current = function getCurrent() {
- return this.tokens[this.i];
+ return this.tokens[this.i]
 }
 
 Parser.prototype.parse = function parse() {
  while (this.current().type == 'EOF') {
-  this.expr.push(this.statements());
+  this.expr.push(this.statements())
  }
- return this.expr;
+ return this.expr
 }
 
 Parser.prototype.statements = function () {
@@ -99,9 +99,24 @@ Parser.prototype.statements = function () {
    // UNIMPLEMENTED
    // return this.declareFunction()
   }
- } else if(c.type == 'NUMBER') {
+ } else {
   return c
  }
+ return null
+}
+
+Parser.prototype.blockStatement = function (type) {
+ this.advance();
+ let statements = [];
+ while (
+  this.current().type != 'RIGHT_' + (type || 'CURLY').toUpperCase() &&
+  this.peek().type != 'EOF'
+ ) {
+  statements.push(this.statements());
+  this.advance();
+ }
+ this.advance();
+ return [statements];
 }
 
 module.exports = Parser
