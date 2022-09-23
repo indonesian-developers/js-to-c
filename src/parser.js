@@ -90,7 +90,6 @@ Parser.prototype.parse = function parse() {
 
 Parser.prototype.statements = function () {
  var c = this.current();
- console.table(c)
  if (c.type == 'KEYWORD') {
   if(c.value == 'class') {
    // UNIMPLEMENTED
@@ -115,10 +114,13 @@ Parser.prototype.statements = function () {
  } else {
   this.advance()
   if(c.value == '{') {
+   console.log(c}
    return Parser.wrapToken({ type: 'object', value: this.blockStatement('curly') })
   } else if(c.value == '[') {
+   console.log(c}
    return Parser.wrapToken({ type: 'array', value: this.blockStatement('bracket') })
   } else if(c.value == '(') {
+   console.log(c}
    return Parser.wrapToken({ type: 'object_array', value: this.blockStatement('paren') })
   }
   else {
@@ -152,7 +154,7 @@ Parser.prototype.declareVariable = function () {
  if (val.type == 'STRING') { val.value = '"' + val.value + '"' }
  r = r + ' ' + val.value
  // console.log({ r, val, v: this.current() })
- return this.advance(), Parser.wrapToken({ type: 'variableDeclare', value: r })
+ return this.advance(), Parser.wrapToken({ type: 'variableDeclaration', value: r })
 }
 
 Parser.prototype.declareFunction = function () {
