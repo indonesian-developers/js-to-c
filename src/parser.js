@@ -89,14 +89,11 @@ Parser.prototype.statements = function () {
    // UNIMPLEMENTED
    // return this.declareFunction()
   } else if(c.value == 'var') {
-   // UNIMPLEMENTED
-   // return this.declareVariable()
+   return this.declareVariable()
   } else if(c.value == 'const') {
-   // UNIMPLEMENTED
-   // return this.declareVariable()
+   return this.declareVariable()
   } else if(c.value == 'let') {
-   // UNIMPLEMENTED
-   // return this.declareVariable()
+   return this.declareVariable()
   } else if(c.value == 'function') {
    // UNIMPLEMENTED
    // return this.declareFunction()
