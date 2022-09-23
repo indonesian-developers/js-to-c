@@ -7,7 +7,7 @@ module.exports = {
   }
  },
  transpileFile: function transpileFile(file) {
-  return module.exports.transpile(require('fs').readFileSync(file))
+  return module.exports.transpile(require('fs').readFileSync(file).toString())
  }
 }
 
