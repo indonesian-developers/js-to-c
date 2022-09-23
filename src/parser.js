@@ -60,6 +60,7 @@ Parser.prototype.getBrackets = function getBrackets() {
 
 Parser.prototype.advance = function advance() {
  this.i++
+ return this.current()
 }
 
 Parser.prototype.peek = function peek() {
@@ -125,13 +126,12 @@ Parser.prototype.blockStatement = function (type) {
 Parser.prototype.declareVariable = function () {
  var t = this.current().value
  var r = t;
+ r = r + ' ' + this.advance().value
  this.advance()
- r = r + ' ' + this.curent().value
- this.advance()
- this.advance()
- var val = this.curent().value
+ var val = this.advance().value
  if (val.type == 'STRING') { val = '"' + val + '"' }
  r + r + ' ' + val
+ this.advance()
  return { type: 'variableDeclare', value: r }
 }
 
