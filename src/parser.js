@@ -21,7 +21,7 @@ Parser.prototype.addBracket = function addBracket(bracket) {
  this.brackets.push(bracket)
 }
 
-Parser.prototype.getBrackets = function getBrackets(brackets) {
+Parser.prototype.getBrackets = function getBrackets() {
  var brackets = this.brackets, b = [], i=0, typef = {
    BRACKET: '[]',
    PAREN: '()',
