@@ -71,6 +71,7 @@ Parser.prototype.current = function getCurrent() {
 }
 
 Parser.prototype.parse = function parse() {
+ this.getBrackets()
  while (this.current().type != 'EOF') {
   this.expr.push(this.statements())
  }
@@ -79,7 +80,7 @@ Parser.prototype.parse = function parse() {
 
 Parser.prototype.statements = function () {
  var c = this.current();
- if (c.type == 'KEYWORDS') {
+ if (c.type == 'KEYWORD') {
   if(c.value == 'class') {
    // UNIMPLEMENTED
    // return this.declareClass()
@@ -118,6 +119,20 @@ Parser.prototype.blockStatement = function (type) {
  }
  this.advance();
  return [statements];
+}
+
+// DECLARATOR
+Parser.prototype.declareVariable = function () {
+ var t = this.current().value
+ var r = t;
+ this.advance()
+ r = r + ' ' + this.curent().value
+ this.advance()
+ this.advance()
+ var val = this.curent().value
+ if (val.type == 'STRING') { val = '"' + val + '"' }
+ r + r + ' ' + val
+ return { type: 'variableDeclare', value: r }
 }
 
 module.exports = Parser
