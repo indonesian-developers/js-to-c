@@ -113,13 +113,13 @@ Parser.prototype.statements = function () {
   }
  } else {
   this.advance()
-  if(c.value == '{') {
+  if(c.type == 'LEFT_CURLY') {
    console.log(c)
    return Parser.wrapToken({ type: 'object', value: this.blockStatement('curly') })
-  } else if(c.value == '[') {
+  } else if(c.type == 'LEFT_BEACKET') {
    console.log(c)
    return Parser.wrapToken({ type: 'array', value: this.blockStatement('bracket') })
-  } else if(c.value == '(') {
+  } else if(c.type == 'LEFT_PAREN') {
    console.log(c)
    return Parser.wrapToken({ type: 'object_array', value: this.blockStatement('paren') })
   }
