@@ -160,7 +160,6 @@ Parser.prototype.declareVariable = function () {
 
 Parser.prototype.declareFunction = function () {
  var t = this.advance()
- this.advance()
  var attrs = this.blockStatement('PAREN')
  var inside = this.blockStatement('CURLY')
  console.log(JSON.stringify({t, attrs, inside}, null, '  '))
