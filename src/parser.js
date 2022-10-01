@@ -124,7 +124,6 @@ Parser.prototype.statements = function () {
    return Parser.wrapToken({ type: 'object_array', value: this.blockStatement('paren') })
   }
   else {
-   this.i--
    return Parser.wrapToken(c)
   }
  }
@@ -132,7 +131,6 @@ Parser.prototype.statements = function () {
 }
 
 Parser.prototype.blockStatement = function (type) {
- this.advance();
  let statements = [];
  while (
   (this.current() && this.current().type != 'RIGHT_' + (type || 'CURLY').toUpperCase()) &&
@@ -164,7 +162,7 @@ Parser.prototype.declareFunction = function () {
  var attrs = this.blockStatement('PAREN')
  var inside = this.blockStatement('CURLY')
  console.log(JSON.stringify({t, attrs, inside}, null, '  '))
- return Parser.wrapToken({ type: 'fn', value: [t, attrs, inside] })
+ return Parser.wrapToken({ type: 'fn', value: { name: t, attrs, value: inside } })
 }
 
 module.exports = Parser
