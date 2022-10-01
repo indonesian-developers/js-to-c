@@ -134,10 +134,10 @@ Parser.prototype.blockStatement = function (type) {
  this.advance();
  let statements = [];
  while (
-  (this.current().token && this.current().token.type != 'RIGHT_' + (type || 'CURLY').toUpperCase()) &&
-  (this.peek().token && this.peek().token.type != 'EOF')
+  (this.current() && this.current().type != 'RIGHT_' + (type || 'CURLY').toUpperCase()) &&
+  (this.peek() && this.peek().type != 'EOF')
  ) {
- console.log({ e: this.statements(), statements, cur: this.current() })
+  console.log({ e: this.statements(), f: this.statements().token, statements, cur: this.current() })
   statements.push(this.statements());
   this.advance();
  }
