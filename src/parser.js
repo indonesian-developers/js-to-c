@@ -140,7 +140,7 @@ Parser.prototype.blockStatement = function (type) {
   statements.push(this.statements());
   this.advance();
  }
- this.advance();
+ // this.advance()
  return statements;
 }
 
