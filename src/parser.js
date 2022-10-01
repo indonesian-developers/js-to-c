@@ -112,6 +112,7 @@ Parser.prototype.statements = function () {
    return Parser.wrapToken({ type: 'return', value: this.advance() })
   }
  } else {
+  this.advance()
   if(c.type == 'LEFT_CURLY') {
    console.log(c)
    return Parser.wrapToken({ type: 'object', value: this.blockStatement('curly') })
@@ -123,6 +124,7 @@ Parser.prototype.statements = function () {
    return Parser.wrapToken({ type: 'object_array', value: this.blockStatement('paren') })
   }
   else {
+   this.i--
    return Parser.wrapToken(c)
   }
  }
